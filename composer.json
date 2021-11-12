@@ -1,0 +1,8 @@
+{
+    "name": "localgovdrupal/localgov_moderngov_tpl",
+    "description": "Drupal module for ModernGov template page generation.",
+    "type": "drupal-module",
+    "homepage": "https://github.com/localgovdrupal/localgov_moderngov_tpl",
+    "license": "GPL-2.0-or-later",
+    "require": {}
+}

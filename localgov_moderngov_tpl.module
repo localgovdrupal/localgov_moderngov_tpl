@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\localgov_moderngov_tpl\Constants;
+
+/**
+ * Implements hook_theme().
+ *
+ * - Default ModernGov page template.
+ */
+function localgov_moderngov_tpl_theme() {
+
+  $themes = [];
+  $themes[Constants::TPL_NAME] = [
+    'base hook' => 'page',
+  ];
+
+  return $themes;
+}
+
+/**
+ * Implements hook_theme_suggestions_hook_alter() for hook_theme_suggestions_page_alter().
+ *
+ * Suggests the ModernGov template for a particular node.
+ */
+function localgov_moderngov_tpl_theme_suggestions_page_alter(array &$suggestions, array $vars) {
+
+  $is_node = \Drupal::routeMatch()->getParameter('node');
+  if (!$is_node) {
+    return;
+  }
+
+  $is_moderngov_tpl_page = Drupal::service('localgov_moderngov_tpl.moderngov_path_predicate')->isModernGovTplPage();
+  if ($is_moderngov_tpl_page) {
+    $suggestions[] = Constants::TPL_NAME;
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook() for hook_preprocess_html().
+ *
+ * - When in the ModernGov template page, applies appropriate classes on the
+ *   body tag.
+ */
+function localgov_moderngov_tpl_preprocess_html(&$vars) {
+
+  $is_moderngov_tpl_page = Drupal::service('localgov_moderngov_tpl.moderngov_path_predicate')->isModernGovTplPage();
+  if ($is_moderngov_tpl_page) {
+    $vars['attributes']['class'][] = 'node--localgov_modern_gov_page';
+  }
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ *
+ * The ModernGov template node's title should be *displayed* as "{pagetitle}".
+ */
+function localgov_moderngov_tpl_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  $is_moderngov_tpl_page = ($entity->getEntityTypeId() === 'node') && Drupal::service('localgov_moderngov_tpl.moderngov_path_predicate')->isModernGovTplPage();
+  if ($is_moderngov_tpl_page) {
+    $entity->get('title')->setValue(Constants::PAGE_TITLE);
+  }
+}
+
+/**
+ * Implements hook_block_build_alter().
+ *
+ * Alterations:
+ * - Adds the "is_moderngov_path" context to menu, content, and alert blocks.
+ *   This is needed to rerender these blocks in the ModernGov template page.
+ *   Rerendering these blocks ensures Links within those blocks get rebuild with
+ *   absolute URLs.
+ */
+function localgov_moderngov_tpl_block_build_alter(array &$build, BlockPluginInterface $block_plugin) {
+  $block_type = $block_plugin->getBaseId();
+  $is_moderngov_page_block = in_array($block_type, [
+    'block_content',
+    'system_menu_block',
+    'localgov_alert_banner_block',
+  ]);
+  if ($is_moderngov_page_block) {
+    $build['#cache']['contexts'][] = 'is_moderngov_path';
+  }
+}

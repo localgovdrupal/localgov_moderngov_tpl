@@ -1,0 +1,26 @@
+services:
+  # Path processor for the ModernGov template page.
+  localgov_moderngov_tpl.moderngov_path_processor:
+    class: Drupal\localgov_moderngov_tpl\PathProcessor\ModernGovAbsolutePathProcessor
+    arguments: ['@localgov_moderngov_tpl.moderngov_path_predicate']
+    tags:
+      - { name: path_processor_outbound }
+
+  # ModernGov cache context.  Are we on the ModernGov template page?
+  cache_context.is_moderngov_path:
+    class: Drupal\localgov_moderngov_tpl\Cache\Context\ModernGovCacheContext
+    arguments: ['@localgov_moderngov_tpl.moderngov_path_predicate']
+    tags:
+      - { name: cache.context }
+
+  # Are we on the ModernGov template page?
+  localgov_moderngov_tpl.moderngov_path_predicate:
+    class: Drupal\localgov_moderngov_tpl\ModernGovPathPredicate
+    arguments: ['@state', '@current_route_match']
+
+  # Absolute asset URLs for the ModernGov template page.
+  localgov_moderngov_tpl.kernel_request_subscriber:
+    class: Drupal\localgov_moderngov_tpl\EventSubscriber\KernelRequestSubscriber
+    arguments: ['@localgov_moderngov_tpl.moderngov_path_predicate']
+    tags:
+      - { name: event_subscriber }

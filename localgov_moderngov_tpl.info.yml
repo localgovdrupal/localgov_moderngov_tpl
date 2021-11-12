@@ -1,0 +1,5 @@
+name: LocalGov Moderngov template
+type: module
+description: Moderngov template page provider.
+package: LocalGov Drupal
+core_version_requirement: ^8.8 || ^9
