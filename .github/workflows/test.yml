@@ -3,10 +3,10 @@ name: Test the localgov_moderngov_tpl module
 on:
   push:
     branches:
-      - '2.x'
+      - '1.x'
   pull_request:
     branches:
-      - '2.x'
+      - '1.x'
 
 jobs:
 
