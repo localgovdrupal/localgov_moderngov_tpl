@@ -52,9 +52,8 @@ class ModernGovConfig extends ConfigFormBase implements ContainerInjectionInterf
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Retrieve the configuration.
+
     $this->state
-      // Set the submitted configuration setting.
       ->set(Constants::TPL_NID_STATE, $form_state->getValue('moderngov_template_page_nid'));
 
     parent::submitForm($form, $form_state);
