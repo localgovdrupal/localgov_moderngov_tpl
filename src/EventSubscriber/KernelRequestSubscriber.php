@@ -6,7 +6,7 @@ namespace Drupal\localgov_moderngov_tpl\EventSubscriber;
 
 use Drupal\localgov_moderngov_tpl\ModernGovPathPredicate;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -30,7 +30,7 @@ class KernelRequestSubscriber implements EventSubscriberInterface {
   /**
    * Ensures absolute asset URLs on the ModernGov template page.
    */
-  public function onRequest(GetResponseEvent $event) {
+  public function onRequest(RequestEvent $event) {
 
     $is_moderngov_tpl_page = $this->modernGovPathPredicate->isModernGovTplPage();
     if ($is_moderngov_tpl_page) {

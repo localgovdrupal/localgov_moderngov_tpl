@@ -15,7 +15,7 @@ class Constants {
   /**
    * ModernGov template page's title.
    */
-  const PAGE_TITLE= '{pagetitle}';
+  const PAGE_TITLE = '{pagetitle}';
 
   /**
    * Key name used by the State API.

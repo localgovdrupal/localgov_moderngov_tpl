@@ -4,10 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\localgov_moderngov_tpl;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\State\StateInterface;
-use Drupal\localgov_moderngov_tpl\Constants;
 
 /**
  * Determines if the current page is the ModernGov template page.
