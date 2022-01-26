@@ -12,6 +12,9 @@ The configured page, when viewed as an anonymous user, displays the following Mo
 
 Both link and asset URLs in the page are rendered as absolute URLs.
 
+## Page template
+Most sites will need a customized ModernGov page template for their themes.  The page template provided with this module is meant to serve as an example of how the ModernGov tokens could be place in a page template.  
+
 ## Good to know
 - Relative URLs **hardcoded** in theme templates or blocks **cannot** be rendered as absolute URLs.
 - [ModernGov test URL](https://reversecms.moderngov.co.uk/).  This is behind HTTP authentication.
