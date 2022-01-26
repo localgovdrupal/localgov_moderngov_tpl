@@ -8,9 +8,10 @@ use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Url;
 
 /**
- * Rewrites relative path to absolute path.
+ * Decorates the file_url_generator service.
  *
- * On the ModernGov template page, all URLs should be absolute.
+ * On the ModernGov template page, requests for relative URL generation is
+ * serviced by the absolute URL generation method.
  */
 class FileUrlGeneratorDecorator implements FileUrlGeneratorInterface {
 

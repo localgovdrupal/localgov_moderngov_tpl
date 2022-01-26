@@ -35,7 +35,7 @@ class PageTest extends BrowserTestBase {
     $this->assertSession()->pageTextContains('{breadcrumb}');
 
     // Validate absolute asset URLs.  We are sampling the Favicon URL only.
-    $favicon_link_element_list = $this->cssSelect('link[rel="shortcut icon"]');
+    $favicon_link_element_list = $this->cssSelect('link[rel="icon"]');
     $favicon_link_element = current($favicon_link_element_list);
 
     $favicon_url = $favicon_link_element->getAttribute('href');
