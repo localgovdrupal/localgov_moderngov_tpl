@@ -4,5 +4,7 @@
     "type": "drupal-module",
     "homepage": "https://github.com/localgovdrupal/localgov_moderngov_tpl",
     "license": "GPL-2.0-or-later",
-    "require": {}
+    "require": {
+         "drupal/core": "^9.3"
+     }
 }

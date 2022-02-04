@@ -92,7 +92,7 @@ jobs:
       matrix:
         include:
           - localgov-version: "2.x"
-            drupal-version: "~9.1"
+            drupal-version: "~9.3"
             php-version: "7.4"
 
     steps:

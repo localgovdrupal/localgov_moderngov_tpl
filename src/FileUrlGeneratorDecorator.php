@@ -52,10 +52,16 @@ class FileUrlGeneratorDecorator implements FileUrlGeneratorInterface {
   /**
    * {@inheritdoc}
    *
-   * Pipes to decorated method.
+   * When on the ModernGov tpl page, skips any transformation.
    */
   public function transformRelative(string $file_url, bool $root_relative = TRUE) :string {
-    return $this->fileUrlGenerator->transformRelative($file_url, $root_relative);
+
+    if ($this->modernGovPathPredicate->isModernGovTplPage()) {
+      return $file_url;
+    }
+    else {
+      return $this->fileUrlGenerator->transformRelative($file_url, $root_relative);
+    }
   }
 
   /**
