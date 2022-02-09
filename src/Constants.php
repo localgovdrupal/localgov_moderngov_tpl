@@ -10,7 +10,12 @@ class Constants {
   /**
    * Twig template used for the ModernGov template page.
    */
-  const TPL_NAME = 'page__moderngov_page_tpl';
+  const PAGE_TPL_NAME = 'page__moderngov_template';
+
+  /**
+   * Class *attribute* for body tag of ModernGov template page.
+   */
+  const PAGE_BODY_CLASS = 'page--moderngov-template';
 
   /**
    * ModernGov template page's title.
@@ -20,6 +25,6 @@ class Constants {
   /**
    * Key name used by the State API.
    */
-  const TPL_NID_STATE = 'localgov_moderngov_tpl.moderngov_template_page_nid';
+  const PAGE_NID_STATE_API_KEY = 'localgov_moderngov_tpl.moderngov_template_page_nid';
 
 }

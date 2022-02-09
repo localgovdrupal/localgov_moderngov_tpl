@@ -20,7 +20,7 @@ use Drupal\localgov_moderngov_tpl\Constants;
 function localgov_moderngov_tpl_theme() {
 
   $themes = [];
-  $themes[Constants::TPL_NAME] = [
+  $themes[Constants::PAGE_TPL_NAME] = [
     'base hook' => 'page',
   ];
 
@@ -41,7 +41,7 @@ function localgov_moderngov_tpl_theme_suggestions_page_alter(array &$suggestions
 
   $is_moderngov_tpl_page = Drupal::service('localgov_moderngov_tpl.moderngov_path_predicate')->isModernGovTplPage();
   if ($is_moderngov_tpl_page) {
-    $suggestions[] = Constants::TPL_NAME;
+    $suggestions[] = Constants::PAGE_TPL_NAME;
   }
 }
 
@@ -55,7 +55,7 @@ function localgov_moderngov_tpl_preprocess_html(&$vars) {
 
   $is_moderngov_tpl_page = Drupal::service('localgov_moderngov_tpl.moderngov_path_predicate')->isModernGovTplPage();
   if ($is_moderngov_tpl_page) {
-    $vars['attributes']['class'][] = 'node--localgov_modern_gov_page';
+    $vars['attributes']['class'][] = Constants::PAGE_BODY_CLASS;
   }
 }
 

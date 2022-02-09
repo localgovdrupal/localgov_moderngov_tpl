@@ -36,7 +36,7 @@ class ModernGovConfig extends ConfigFormBase implements ContainerInjectionInterf
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $tpl_nid = $this->state->get(Constants::TPL_NID_STATE);
+    $tpl_nid = $this->state->get(Constants::PAGE_NID_STATE_API_KEY);
 
     $form['moderngov_template_page_nid'] = [
       '#type' => 'number',
@@ -54,7 +54,7 @@ class ModernGovConfig extends ConfigFormBase implements ContainerInjectionInterf
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
     $this->state
-      ->set(Constants::TPL_NID_STATE, $form_state->getValue('moderngov_template_page_nid'));
+      ->set(Constants::PAGE_NID_STATE_API_KEY, $form_state->getValue('moderngov_template_page_nid'));
 
     parent::submitForm($form, $form_state);
   }

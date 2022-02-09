@@ -63,7 +63,7 @@ class PageTest extends BrowserTestBase {
     $this->createPathAlias("/node/$new_nid", '/modern-gov-template');
 
     // @see Drupal\localgov_moderngov_tpl\Form\ModernGovConfig::submitForm().
-    \Drupal::service('state')->set(Constants::TPL_NID_STATE, $new_nid);
+    \Drupal::service('state')->set(Constants::PAGE_NID_STATE_API_KEY, $new_nid);
   }
 
   /**

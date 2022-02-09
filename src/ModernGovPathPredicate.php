@@ -23,7 +23,7 @@ class ModernGovPathPredicate {
     }
 
     $current_nid = $this->currentRouteMatch->getRawParameter('node');
-    $moderngov_page_nid = $this->state->get(Constants::TPL_NID_STATE);
+    $moderngov_page_nid = $this->state->get(Constants::PAGE_NID_STATE_API_KEY);
 
     $is_moderngov_tpl_page = ((int) $current_nid === (int) $moderngov_page_nid);
     return $is_moderngov_tpl_page;
